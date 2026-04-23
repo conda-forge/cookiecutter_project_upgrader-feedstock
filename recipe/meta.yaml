@@ -10,7 +10,7 @@ source:
   sha256: 20c48970acacc5d22a33b7ac0bca74674b2690563748cc9c3c5728048eb97b6d
 
 build:
-  number: 0
+  number: 1
   noarch: python
   entry_points:
     - cookiecutter_project_upgrader=cookiecutter_project_upgrader.cli:main
@@ -19,14 +19,16 @@ build:
 requirements:
   host:
     - pip
-    - python >=3.6
+    - python {{ python_min }}
     - setuptools_scm
   run:
     - click >=7.0
     - cookiecutter
-    - python >=3.6
+    - python >={{ python_min }}
 
 test:
+  requires:
+    - python {{ python_min }}
   imports:
     - cookiecutter_project_upgrader
   commands:
